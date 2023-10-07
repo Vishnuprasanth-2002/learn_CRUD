@@ -36,8 +36,8 @@ function App() {
   }, [titles]);
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="total-container">
+      <form className="form" onSubmit={handleSubmit}>
         <div>
           <Input
             label="Title"
@@ -51,10 +51,10 @@ function App() {
           <Button type="submit" name="Add" />
         </div>
       </form>
-
+      <div className="grid">
       {titles.map((item,index) => {
         return (
-          <div key={index}>
+          <div  key={index}>
             <Card
               values={item}
               deleteCard={() => deleteCard(item.id)}
@@ -63,6 +63,7 @@ function App() {
           </div>
         );
       })}
+      </div>
     </div>
   );
 }
