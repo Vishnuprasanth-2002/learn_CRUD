@@ -11,18 +11,29 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setTitles(() => {
-      const data = { id: uuidv4(), title: title };
-      return [...titles, data];
-    });
-
+    const data = { id: uuidv4(), title: title };
+    const newTitles = [...titles, data];
+    setTitles(newTitles);
+    saveToLocal(newTitles); // Save the data to local storage
     setTitle("");
   };
 
-  function UpdateCard(id,updatedTitle) {
-    const findIndex = titles.findIndex((obj)=>obj.id===id)
+  useEffect(() => {
+    getFromStorage(); // Load the data from local storage
+  }, []);
+  
+  
+  function saveToLocal(newTitles) {
+    localStorage.setItem("my-titles", JSON.stringify(newTitles));
+  }
+
+  function UpdateCard(id, updatedTitle) {
+    const findIndex = titles.findIndex((obj) => obj.id === id);
     const updatedItems = [...titles];
-    updatedItems[findIndex] = { ...updatedItems[findIndex], title: updatedTitle };
+    updatedItems[findIndex] = {
+      ...updatedItems[findIndex],
+      title: updatedTitle,
+    };
     setTitles(updatedItems);
   }
 
@@ -31,9 +42,13 @@ function App() {
     setTitles(filterArray);
   }
 
-  useEffect(() => {
-    console.log(titles);
-  }, [titles]);
+  function getFromStorage() {
+    const storedTitles = JSON.parse(localStorage.getItem("my-titles"));
+    if (storedTitles) {
+      console.log("hi");
+      setTitles(storedTitles);
+    }
+  }
 
   return (
     <div className="total-container">
@@ -52,17 +67,17 @@ function App() {
         </div>
       </form>
       <div className="grid">
-      {titles.map((item,index) => {
-        return (
-          <div  key={index}>
-            <Card
-              values={item}
-              deleteCard={() => deleteCard(item.id)}
-              UpdateCard={(updatedTitle) => UpdateCard(item.id,updatedTitle)}
-            />
-          </div>
-        );
-      })}
+        {titles.map((item, index) => {
+          return (
+            <div key={index}>
+              <Card
+                values={item}
+                deleteCard={() => deleteCard(item.id)}
+                UpdateCard={(updatedTitle) => UpdateCard(item.id, updatedTitle)}
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
