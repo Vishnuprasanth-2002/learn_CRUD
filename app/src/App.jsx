@@ -35,6 +35,7 @@ function App() {
       title: updatedTitle,
     };
     setTitles(updatedItems);
+    saveToLocal(updatedItems);
   }
 
   function deleteCard(id) {
