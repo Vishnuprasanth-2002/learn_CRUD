@@ -4,7 +4,10 @@ body {
 
 h1 {
   text-align: center;
-  color: white;
+  color: #00a793;
+}
+.tweet-list {
+  color: #00a793;
 }
 .navbar {
   padding: 10px;
@@ -12,12 +15,21 @@ h1 {
   align-items: center;
   justify-content: space-around;
   flex-direction: row-reverse;
-  background: darkcyan;
+  border-bottom: 1px solid #00a793;
+  box-shadow: 0 3px 5px grey;
+  background: white;
 }
 .link {
   display: flex;
   align-items: center;
   justify-content: end;
+}
+.link button {
+  border: 0;
+  outline: none;
+  font-size: 18px;
+  color: #00a793;
+  background-color: white;
 }
 a {
   text-decoration: none;
@@ -31,40 +43,72 @@ a {
 .search input {
   padding: 8px 40px;
   border-radius: 8px;
+  border: 1px solid gray;
 }
 .Search-btn {
-  background: midnightblue;
+  background: #00a793;
   color: white;
   border: none;
   padding: 8px 20px;
   border-radius: 10px;
 }
+.tweet-parent {
+  background-color: #f5f2f2;
+  height: 700px;
+  position: relative;
+}
 .tweet-container {
-  padding: 100px;
+  padding: 110px;
   margin-top: 50px;
-  background: aliceblue;
+  /* background-color: rgba(247, 247, 249, 1); */
   border-radius: 20px;
+  background: url(https://www.mediwavedigital.com/_next/static/media/oruworks.e62439ad.svg);
+  background-repeat: no-repeat;
+  background-position: left 110px top 72px;
+  position: absolute;
+  top: 100px;
 }
 .tweet-records {
   display: flex;
   flex-wrap: wrap;
 }
+.card:nth-child(even) {
+  border-left: 14px solid #e50064;
+}
 .card {
-  padding: 15px;
+  /* padding: 15px; */
   margin: 25px;
-  border: 1px solid green;
-  border-radius: 5px;
+  border-radius: 10px;
   background: white;
   width: 300px !important;
+  border-left: 14px solid #00a793;
+  /* background-color: rgba(247, 247, 249, 1); */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+.card p {
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: 300;
 }
 .emoji-head {
+  padding: 4px 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-top: 1px solid #00a793;
+}
+.emoji button {
+  border: 0;
+  background-color: #fff;
 }
 .like {
-  border: 1px solid green;
-  padding: 6px;
+  border: 1px solid #00a793;
+  border-radius: 5px;
+  padding: 2px;
+}
+.date {
+  font-size: 12px;
 }
 ::selection {
   background: rgba(26, 188, 156, 0.3);
@@ -117,13 +161,13 @@ form .row input::placeholder {
 }
 .back {
   margin-top: 25px;
-  border: 1px solid dodgerblue;
-  background: dodgerblue;
+  border: 1px solid #00a793;
   padding: 4px 8px;
   border-radius: 4px;
+  background: white;
 }
 .back a {
-  color: white;
+  color: #00a793;
 }
 .submit-btn {
   background: #16a085;
@@ -131,6 +175,12 @@ form .row input::placeholder {
   border: none;
   padding: 10px 24px;
   border-radius: 5px;
+}
+.submit-btn:disabled {
+  filter: grayscale(100%);
+}
+.error{
+  color: red;
 }
 @media only screen and (max-width: 992px) {
   .tweet-records {
@@ -141,16 +191,25 @@ form .row input::placeholder {
     width: 400px !important;
   }
 }
+@media only screen and (max-width: 768px) {
+  .tweet-container {
+    background: none;
+  }
+}
 @media only screen and (max-width: 600px) {
   .tweet-records {
     display: block;
+    margin: 7px auto;
+    width: 50px;
   }
   .card {
     margin: 25px auto;
     width: 300px !important;
   }
   .tweet-container {
-    padding: 10px 0;
+    padding: 0px;
+    margin-top: 140px;
+    background: none;
   }
 }
 @media only screen and (max-width: 400px) {
