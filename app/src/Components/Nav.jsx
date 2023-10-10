@@ -35,6 +35,10 @@ function Nav() {
     return formattedDate;
   };
 
+  function handleLike(id){
+      
+  }
+
   function handleAddTweet(tweet) {
     const data = {
       id: uuidv4(),
@@ -91,10 +95,19 @@ function Nav() {
                     <p>{item.tweet}</p>
                     <div className="emoji-head">
                       <div className="emoji">
-                        <button className="like" id={`like-${item.id}`}>
+                        <button
+                          className="like"
+                          id={`like-${item.id}`}
+                          onClick={() => handleLike(`like-${item.id}`)}
+                        >
                           &#128077;
                         </button>
-                        <button id={`dislike-${item.id}`}>&#128078;</button>
+                        <button
+                          id={`dislike-${item.id}`}
+                          onClick={() => handleLike(`dislike-${item.id}`)}
+                        >
+                          &#128078;
+                        </button>
                       </div>
                       <div className="date">
                         {item.date}, {item.time}
